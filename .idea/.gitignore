@@ -1,0 +1,23 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+# Zeppelin ignored files
+/ZeppelinRemoteNotebooks/
+
+### Don't know why I would want to check these in:
+
+# Intellij specific plugin config
+/google-java-format.xml
+# Should be loaded from the build.gradle file
+/kotlinc.xml
+# Computer specific jdk, someone else might use a different one
+/misc.xml
+# Yes it is git. Do I need to check that into git? I don't think so
+/vcs.xml
+# Gradle modules should be loaded from the build.gradle file
+/gradle.xml

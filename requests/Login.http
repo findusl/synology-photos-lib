@@ -1,0 +1,21 @@
+### GET Info Https
+GET https://{{host}}:5001/webapi/entry.cgi
+    ?api=SYNO.API.Info&version=1&method=query&query=SYNO.API.Auth
+
+### GET Info Http
+GET http://{{host}}:5000/webapi/entry.cgi
+    ?api=SYNO.API.Info&version=1&method=query&query=SYNO.API.Auth HTTP/2
+
+### Login Http with otp
+GET http://{{host}}:5000/webapi/entry.cgi
+    ?api=SYNO.API.Auth&version=7&method=login&
+    account={{username}}&passwd={{password}}&otp_code={{otp}}&
+    enable_device_token=yes&device_name={{deviceName}}
+
+### Login Http with deviceId
+GET http://{{host}}:5000/webapi/entry.cgi
+    ?api=SYNO.API.Auth&version=7&method=login&
+    account={{username}}&passwd={{password}}&device_id={{deviceId}}
+
+
+###
