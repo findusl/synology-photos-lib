@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.kotlinJvm)
     alias(libs.plugins.ktor)
+    alias(libs.plugins.kotlinx.serialization)
+    id("com.adarshr.test-logger") version "4.0.0"
     application
 }
 
@@ -12,12 +14,21 @@ application {
 }
 
 dependencies {
-    
-    implementation(libs.logback)
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.cio)
     implementation(libs.ktor.client.jetty)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.serialization.kotlinx)
     implementation(libs.ktor.client.logging)
-    implementation("ch.qos.logback:logback-classic:+")
-    testImplementation(libs.kotlin.test.junit)
+    implementation(libs.logback)
+    implementation(libs.kotlinx.serialization)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.kotlin.result)
+    implementation(libs.kotlin.result.coroutines)
+
+    testImplementation(kotlin("test"))
+}
+
+tasks.test {
+    useJUnitPlatform()
 }

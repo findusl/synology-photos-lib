@@ -21,3 +21,10 @@
 /vcs.xml
 # Gradle modules should be loaded from the build.gradle file
 /gradle.xml
+/modules.xml
+/modules/*
+
+# Run configuration has environment variables
+/runConfigurations/ApplicationKt.xml
+
+/inspectionProfiles/Project_Default.xml

@@ -1,0 +1,5 @@
+### Get Shared persons
+GET http://{{host}}/photo/webapi/entry.cgi?
+    api=SYNO.FotoTeam.Browse.Person&version=2&offset=0&limit=10&method=list
+
+###
