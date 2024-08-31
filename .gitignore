@@ -8,3 +8,5 @@ build/
 # Intellij http request private environments
 *.private.env.json
 /.env
+/logs/
+/.kotlin/

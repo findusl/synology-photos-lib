@@ -1,29 +1,26 @@
-package de.lehrbaum.lib.synology.photos.dto
+package de.lehrbaum.lib.synology.photos.dto.item
 
+import de.lehrbaum.lib.synology.photos.dto.ErrorData
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 
-@Serializable
-data class LoginData(
-	@SerialName("device_id")
-	val deviceId: String,
-)
-
 @OptIn(ExperimentalSerializationApi::class)
 @Serializable
 @JsonClassDiscriminator("success")
-sealed interface LoginResponse {
+sealed interface ItemResponse {
 	@Serializable
 	@SerialName("true")
 	data class Success(
-		val data: LoginData
-	) : LoginResponse
+		@SerialName("data")
+		val data: ItemData
+	) : ItemResponse
 
 	@Serializable
 	@SerialName("false")
 	data class Failure(
+		@SerialName("error")
 		val error: ErrorData
-	) : LoginResponse
+	) : ItemResponse
 }

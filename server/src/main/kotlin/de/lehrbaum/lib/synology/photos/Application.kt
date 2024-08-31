@@ -8,18 +8,43 @@ import io.ktor.http.URLBuilder
 import io.ktor.http.URLProtocol
 import io.ktor.http.path
 import kotlinx.coroutines.runBlocking
+import java.time.Instant
 
 fun main() {
+	runSampleRequests()
+}
+
+private fun runOtpLogin() {
+	runBlocking {
+		val result = PhotoSessionCreator.loginWithOtp(
+			"http://${System.getenv("ip_address")}",
+			System.getenv("username"),
+			System.getenv("password"),
+			"otp",
+			System.getenv("device_name"),
+		)
+		if (result.isOk) {
+			val deviceId = result.value.second
+			println("Got deviceId $deviceId")
+		}
+	}
+	println("Done!")
+}
+
+private fun runSampleRequests() {
 	runBlocking {
 		coroutineBinding {
 			val session = PhotoSessionCreator.loginNoOtp(
-				"http:// ${System.getenv("ip_address")}",
+				"http://${System.getenv("ip_address")}",
 				System.getenv("username"),
 				System.getenv("password"),
 				System.getenv("device_id"),
 			).bind()
-			val peopleBody = session.peopleRequest().bind()
-			println("Got " + peopleBody.data.list[0])
+			val personData = session.suggestPeople("Mine").bind()
+			println("Got Person " + personData.list[0])
+			val dates = listOf(Instant.ofEpochSecond(1690848000) to Instant.ofEpochSecond(1693526399))
+			val itemData = session.itemsForPersonAndDates(personData.list[0].id, dates).bind()
+			println("Got ${itemData.list.size} items")
 		}
 	}
 	println("Done!")

@@ -2,4 +2,37 @@
 GET http://{{host}}/photo/webapi/entry.cgi?
     api=SYNO.FotoTeam.Browse.Person&version=2&offset=0&limit=10&method=list
 
+### Get Person by name
+GET http://{{host}}/photo/webapi/entry.cgi?
+    api=SYNO.FotoTeam.Browse.Person&method=suggest&version=2&name_prefix=%22Mine%22&additional=%5B%22thumbnail%22%5D
+
+### Get Timeline for person
+GET http://{{host}}/photo/webapi/entry.cgi?
+    api=SYNO.FotoTeam.Browse.Timeline&method=get&version=3&timeline_group_unit=day&person_id=2252
+
+### Get Timeline in timespan
+GET http://{{host}}/photo/webapi/entry.cgi?
+    api=SYNO.FotoTeam.Browse.Timeline&method=get_with_filter&version=3&timeline_group_unit=day&
+    time=%5B%7B%22start_time%22%3A1690848000%2C%22end_time%22%3A1693526399%7D%5D
+
+### Get Timeline in timespan and Person
+GET http://{{host}}/photo/webapi/entry.cgi?
+    api=SYNO.FotoTeam.Browse.Timeline&method=get_with_filter&version=3&timeline_group_unit=day&
+    time=%5B%7B%22start_time%22%3A1690848000%2C%22end_time%22%3A1693526399%7D%5D&
+    person=%5B6536%5D&person_policy=or
+
+### Get Timeline in timespan and Persons
+GET http://{{host}}/photo/webapi/entry.cgi?
+    api=SYNO.FotoTeam.Browse.Timeline&method=get_with_filter&version=3&timeline_group_unit=day&
+    time=%5B%7B%22start_time%22%3A1690848000%2C%22end_time%22%3A1693526399%7D%5D&
+    person=%5B2252%2C228%5D&person_policy=and
+
+### Get Items with filtered timespan
+GET http://{{host}}/photo/webapi/entry.cgi?
+    api=SYNO.FotoTeam.Browse.Item&method=list_with_filter&version=2&offset=0&limit=137&
+    additional=%5B%22resolution%22%2C%22orientation%22%2C%22address%22%5D&
+    time=%5B%7B%22start_time%22%3A1693526400%2C%22end_time%22%3A1696118399%7D%2C%7B%22start_time%22%3A1696118400%2C%22end_time%22%3A1698796799%7D%5D
+
+
+
 ###

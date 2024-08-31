@@ -4,17 +4,20 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ErrorData(
-    val code: Int,
-    val errors: ErrorTypes
+	val code: Int, // Known value 119 for session expired, 403 for missing otp, 120 for missing field
+	val errors: ErrorTypes?,
 ) {
 
-    @Serializable
-    data class ErrorTypes(
-        val types: List<ErrorType>
-    )
+	// Awful to parse type safe...
+	@Serializable
+	data class ErrorTypes(
+		val types: List<ErrorType>?,
+		val name: String?,
+		val reason: String?,
+	)
 
-    @Serializable
-    data class ErrorType(
-        val type: String // known values: otp for missing onetimepad
-    )
+	@Serializable
+	data class ErrorType(
+		val type: String // known values: otp for missing onetimepad
+	)
 }
