@@ -30,7 +30,6 @@ private fun runOtpLogin() {
 			println("Got deviceId $deviceId")
 		}
 	}
-	println("Done!")
 }
 
 private fun runSampleRequests() {
@@ -44,7 +43,6 @@ private fun runSampleRequests() {
 			println("Got ${itemData.list.size} items")
 		}
 	}
-	println("Done!")
 }
 
 private fun getTodayPastYears(): List<Pair<Instant, Instant>> {

@@ -18,6 +18,8 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.serialization.kotlinx.json.json
 import org.slf4j.LoggerFactory
 
+private val logger = LoggerFactory.getLogger(PhotoSessionCreator::class.qualifiedName)
+
 object PhotoSessionCreator {
 
 	/**
@@ -42,7 +44,7 @@ object PhotoSessionCreator {
 		val loginResponse = response.body<LoginResponse>()
 		when (loginResponse) {
 			is LoginResponse.Failure -> {
-				println("Login failed with response ${response.bodyAsText()}")
+				logger.error("Login failed with response ${response.bodyAsText()}")
 				throw RuntimeException("Got $loginResponse")
 			}
 
@@ -81,7 +83,7 @@ object PhotoSessionCreator {
 		val loginResponse = response.body<LoginResponse>()
 		when (loginResponse) {
 			is LoginResponse.Failure -> {
-				println("Login failed with response ${response.bodyAsText()}")
+				logger.error("Login failed with response ${response.bodyAsText()}")
 				throw RuntimeException("Got $loginResponse")
 			}
 

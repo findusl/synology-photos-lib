@@ -18,8 +18,11 @@ import io.ktor.server.routing.get
 import io.ktor.server.routing.routing
 import io.ktor.utils.io.copyTo
 import kotlinx.serialization.encodeToString
+import org.slf4j.LoggerFactory
 import java.time.Instant
 import java.time.ZoneId
+
+private val logger = LoggerFactory.getLogger("de.lehrbaum.lib.synology.photos.server")
 
 fun startServer() {
 	embeddedServer(CIO, port = 8080) {
@@ -38,16 +41,16 @@ private suspend fun RoutingContext.getDayImage() {
 	val result = coroutineBinding {
 		val session = Environment.loginNoOtp().bind()
 		val personData = session.suggestPeople("Mine").bind()
-		println("Got Person " + personData.list[0])
+		logger.info("Got Person " + personData.list[0])
 		val dates = getTodayPastYears()
 		val itemData = session.itemsForPersonAndDates(personData.list[0].id, dates).bind()
-		println("Got ${itemData.list.size} items")
+		logger.info("Got ${itemData.list.size} items")
 		if (itemData.list.isEmpty()) {
 			call.respondText(text = "No pictures found for today :(", status = HttpStatusCode.NotFound)
 			return@coroutineBinding
 		}
 		val chosenItem = itemData.list.random()
-		println("Chose $chosenItem")
+		logger.info("Chose $chosenItem")
 		val cacheKey = chosenItem.itemAdditional.thumbnail!!.cacheKey
 		val response = session.itemThumbnail(chosenItem.id, cacheKey, "xl").bind()
 		call.response.headers.append("X-Item", JsonDeserializer.encodeToString(chosenItem))
@@ -61,6 +64,7 @@ private suspend fun RoutingContext.getDayImage() {
 }
 
 private fun getTodayPastYears(): List<Pair<Instant, Instant>> {
+	logger.debug("Timezone is {}", ZoneId.systemDefault())
 	val today = Instant.now().atZone(ZoneId.systemDefault()).toLocalDateTime().toLocalDate()
 	return (1..20).map { i ->
 		val datePast = today.minusYears(i.toLong())
