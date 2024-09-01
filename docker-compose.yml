@@ -10,4 +10,4 @@ services:
     volumes:
       - ./logs:/app/logs
     ports:
-      - "8080:8080"
+      - "53456:8080"

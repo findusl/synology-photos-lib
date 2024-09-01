@@ -25,12 +25,13 @@ object PhotoSessionCreator {
 	/**
 	 * @param baseUrl Protocol, Host and port of your nas. The requests will be sent
 	 *      against `<baseUrl>/photo/webapi/entry.cgi` Example: http://192.168.148.10
+	 * @param deviceId If this account needs 2FA but was remembered. otherwise null
 	 */
 	suspend fun loginNoOtp(
 		baseUrl: String,
 		username: String,
 		password: String,
-		deviceId: String,
+		deviceId: String? = null,
 	): Result<PhotoSession, Any> {
 		val client = createHttpClient(baseUrl)
 		val response = client.getDefaultWithParams {
@@ -39,7 +40,7 @@ object PhotoSessionCreator {
 			append("method", "login")
 			append("account", username)
 			append("passwd", password)
-			append("device_id", deviceId)
+			deviceId?.let { append("device_id", it) }
 		}
 		val loginResponse = response.body<LoginResponse>()
 		when (loginResponse) {
