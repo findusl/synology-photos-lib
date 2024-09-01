@@ -104,7 +104,7 @@ object PhotoSessionCreator {
 				url("$baseUrl/photo/webapi/entry.cgi")
 			}
 			install(Logging) {
-				level = LogLevel.ALL
+				level = LogLevel.INFO
 				//disableLogging() // ContentNegotiation does not listen to Level.None
 			}
 		}
