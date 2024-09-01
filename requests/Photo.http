@@ -33,6 +33,10 @@ GET http://{{host}}/photo/webapi/entry.cgi?
     additional=%5B%22resolution%22%2C%22orientation%22%2C%22address%22%5D&
     time=%5B%7B%22start_time%22%3A1693526400%2C%22end_time%22%3A1696118399%7D%2C%7B%22start_time%22%3A1696118400%2C%22end_time%22%3A1698796799%7D%5D
 
+### Get Item Thumbnail
+GET http://{{host}}/photo/webapi/entry.cgi?
+    id=205340&cache_key=%22205340_1698786334%22&type=%22unit%22&size=%22xl%22&
+    api=%22SYNO.FotoTeam.Thumbnail%22&method=%22get%22&version=2
 
 
 ###

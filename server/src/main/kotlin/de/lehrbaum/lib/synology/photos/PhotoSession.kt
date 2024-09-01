@@ -10,6 +10,7 @@ import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.bodyAsText
+import io.ktor.http.isSuccess
 import java.time.Instant
 
 class PhotoSession internal constructor(private val client: HttpClient) {
@@ -44,7 +45,8 @@ class PhotoSession internal constructor(private val client: HttpClient) {
 			append("method", "list_with_filter")
 			append("version", "2")
 			append("offset", "0")
-			append("limit", "10")
+			append("limit", "100")
+			append("additional", "[\"thumbnail\"]")
 			append("person", "[$personId]")
 			append("person_policy", "and")
 			val timeSpans = dates
@@ -54,6 +56,27 @@ class PhotoSession internal constructor(private val client: HttpClient) {
 			append("time", timeSpans)
 		}
 		return convertItemResponse(httpResponse)
+	}
+
+	suspend fun itemThumbnail(
+		itemId: Int,
+		cacheKey: String,
+		size: String, // Possible known values xl, sm
+	): Result<HttpResponse, Any> {
+		val httpResponse = client.getDefaultWithParams {
+			append("api", "SYNO.FotoTeam.Thumbnail")
+			append("method", "get")
+			append("version", "2")
+			append("id", itemId.toString())
+			append("cache_key", cacheKey)
+			append("type", "unit")
+			append("size", size)
+		}
+		if (httpResponse.status.isSuccess()) {
+			return Ok(httpResponse)
+		} else {
+			throw RuntimeException("Request failed with ${httpResponse.status}")
+		}
 	}
 
 	private suspend fun convertPeopleResponse(httpResponse: HttpResponse): Result<PersonData, Nothing> {

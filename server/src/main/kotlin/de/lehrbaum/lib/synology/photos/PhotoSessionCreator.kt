@@ -8,6 +8,7 @@ import de.lehrbaum.lib.synology.photos.dto.LoginResponse
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.engine.cio.CIO
+import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.cookies.HttpCookies
 import io.ktor.client.plugins.defaultRequest
@@ -95,6 +96,9 @@ object PhotoSessionCreator {
 			install(HttpCookies)
 			install(ContentNegotiation) {
 				json(JsonDeserializer)
+			}
+			install(HttpTimeout) {
+				requestTimeoutMillis = 10000
 			}
 			defaultRequest {
 				url("$baseUrl/photo/webapi/entry.cgi")

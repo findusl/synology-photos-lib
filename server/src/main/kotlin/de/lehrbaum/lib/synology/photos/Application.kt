@@ -1,6 +1,7 @@
 package de.lehrbaum.lib.synology.photos
 
 import com.github.michaelbull.result.coroutines.coroutineBinding
+import de.lehrbaum.lib.synology.photos.server.startServer
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.statement.HttpResponse
@@ -9,9 +10,10 @@ import io.ktor.http.URLProtocol
 import io.ktor.http.path
 import kotlinx.coroutines.runBlocking
 import java.time.Instant
+import java.time.ZoneId
 
 fun main() {
-	runSampleRequests()
+	startServer()
 }
 
 private fun runOtpLogin() {
@@ -34,20 +36,25 @@ private fun runOtpLogin() {
 private fun runSampleRequests() {
 	runBlocking {
 		coroutineBinding {
-			val session = PhotoSessionCreator.loginNoOtp(
-				"http://${System.getenv("ip_address")}",
-				System.getenv("username"),
-				System.getenv("password"),
-				System.getenv("device_id"),
-			).bind()
+			val session = Environment.loginNoOtp().bind()
 			val personData = session.suggestPeople("Mine").bind()
 			println("Got Person " + personData.list[0])
-			val dates = listOf(Instant.ofEpochSecond(1690848000) to Instant.ofEpochSecond(1693526399))
+			val dates = getTodayPastYears()
 			val itemData = session.itemsForPersonAndDates(personData.list[0].id, dates).bind()
 			println("Got ${itemData.list.size} items")
 		}
 	}
 	println("Done!")
+}
+
+private fun getTodayPastYears(): List<Pair<Instant, Instant>> {
+	val today = Instant.now().atZone(ZoneId.systemDefault()).toLocalDateTime().toLocalDate()
+	return (1..20).map { i ->
+		val datePast = today.minusYears(i.toLong())
+		val startOfDay = datePast.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()
+		val endOfDay = datePast.plusDays(1).atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()
+		startOfDay to endOfDay
+	}
 }
 
 private suspend fun HttpClient.infoRequest(): HttpResponse =

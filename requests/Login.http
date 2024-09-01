@@ -1,6 +1,6 @@
 ### GET Info Https
 GET https://{{host}}/photo/webapi/entry.cgi
-    ?api=SYNO.API.Info&version=1&method=query&query=SYNO.FotoTeam.Browse.Item
+    ?api=SYNO.API.Info&version=1&method=query&query=SYNO.FotoTeam.Thumbnail
 
 ### GET Info Http
 GET http://{{host}}/photo/webapi/entry.cgi
