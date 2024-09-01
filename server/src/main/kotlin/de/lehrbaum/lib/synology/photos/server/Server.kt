@@ -48,7 +48,7 @@ private suspend fun RoutingContext.getDayImage() {
 		}
 		val chosenItem = itemData.list.random()
 		println("Chose $chosenItem")
-		val cacheKey = chosenItem.itemAdditional!!.thumbnail!!.cacheKey
+		val cacheKey = chosenItem.itemAdditional.thumbnail!!.cacheKey
 		val response = session.itemThumbnail(chosenItem.id, cacheKey, "xl").bind()
 		call.response.headers.append("X-Item", JsonDeserializer.encodeToString(chosenItem))
 		call.respondBytesWriter(contentType = response.contentType(), status = response.status) {

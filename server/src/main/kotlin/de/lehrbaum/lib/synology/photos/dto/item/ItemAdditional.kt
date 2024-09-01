@@ -6,13 +6,13 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ItemAdditional(
     @SerialName("address")
-    val address: Address?,
+    val address: Address? = null,
     @SerialName("orientation")
-    val orientation: Int?,
+    val orientation: Int? = null,
     @SerialName("orientation_original")
-    val orientationOriginal: Int?,
+    val orientationOriginal: Int? = null,
     @SerialName("resolution")
-    val resolution: Resolution?,
+    val resolution: Resolution? = null,
     @SerialName("thumbnail")
-    val thumbnail: Thumbnail?,
+    val thumbnail: Thumbnail? = null,
 )

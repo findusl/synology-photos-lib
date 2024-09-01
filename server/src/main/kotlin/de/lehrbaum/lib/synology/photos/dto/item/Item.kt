@@ -8,7 +8,7 @@ data class Item(
 	@SerialName("id")
 	val id: Int,
 	@SerialName("additional")
-    val itemAdditional: ItemAdditional?,
+    val itemAdditional: ItemAdditional = ItemAdditional(),
 	@SerialName("filename")
     val filename: String,
 	@SerialName("filesize")
