@@ -1,4 +1,4 @@
-package de.lehrbaum.lib.synology.photos
+package de.findusl.lib.synology.photos
 
 import com.github.michaelbull.result.Result
 

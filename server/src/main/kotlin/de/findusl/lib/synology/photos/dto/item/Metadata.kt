@@ -1,4 +1,4 @@
-package de.lehrbaum.lib.synology.photos.dto.item
+package de.findusl.lib.synology.photos.dto.item
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

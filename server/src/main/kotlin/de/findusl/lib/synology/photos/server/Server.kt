@@ -1,8 +1,8 @@
-package de.lehrbaum.lib.synology.photos.server
+package de.findusl.lib.synology.photos.server
 
 import com.github.michaelbull.result.coroutines.coroutineBinding
-import de.lehrbaum.lib.synology.photos.Environment
-import de.lehrbaum.lib.synology.photos.JsonDeserializer
+import de.findusl.lib.synology.photos.Environment
+import de.findusl.lib.synology.photos.JsonDeserializer
 import io.ktor.client.statement.bodyAsChannel
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.contentType
@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory
 import java.time.Instant
 import java.time.ZoneId
 
-private val logger = LoggerFactory.getLogger("de.lehrbaum.lib.synology.photos.server")
+private val logger = LoggerFactory.getLogger("de.findusl.lib.synology.photos.server")
 
 fun startServer() {
 	embeddedServer(CIO, port = 8080) {
@@ -40,7 +40,7 @@ fun startServer() {
 private suspend fun RoutingContext.getDayImage() {
 	val result = coroutineBinding {
 		val session = Environment.loginNoOtp().bind()
-		val personData = session.suggestPeople("Mine").bind()
+		val personData = session.suggestPeople("Valeriya").bind()
 		logger.info("Got Person " + personData.list[0])
 		val dates = getTodayPastYears()
 		val itemData = session.itemsForPersonAndDates(personData.list[0].id, dates).bind()

@@ -1,11 +1,11 @@
-package de.lehrbaum.lib.synology.photos
+package de.findusl.lib.synology.photos
 
 import com.github.michaelbull.result.Ok
 import com.github.michaelbull.result.Result
-import de.lehrbaum.lib.synology.photos.dto.PeopleResponse
-import de.lehrbaum.lib.synology.photos.dto.PersonData
-import de.lehrbaum.lib.synology.photos.dto.item.ItemData
-import de.lehrbaum.lib.synology.photos.dto.item.ItemResponse
+import de.findusl.lib.synology.photos.dto.PeopleResponse
+import de.findusl.lib.synology.photos.dto.PersonData
+import de.findusl.lib.synology.photos.dto.item.ItemData
+import de.findusl.lib.synology.photos.dto.item.ItemResponse
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.statement.HttpResponse

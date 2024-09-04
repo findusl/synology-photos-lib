@@ -1,6 +1,6 @@
-package de.lehrbaum.lib.synology.photos.dto
+package de.findusl.lib.synology.photos.dto
 
-import de.lehrbaum.lib.synology.photos.JsonDeserializer
+import de.findusl.lib.synology.photos.JsonDeserializer
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertIs

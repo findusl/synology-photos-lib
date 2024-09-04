@@ -1,7 +1,7 @@
-package de.lehrbaum.lib.synology.photos
+package de.findusl.lib.synology.photos
 
 import com.github.michaelbull.result.coroutines.coroutineBinding
-import de.lehrbaum.lib.synology.photos.server.startServer
+import de.findusl.lib.synology.photos.server.startServer
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.statement.HttpResponse

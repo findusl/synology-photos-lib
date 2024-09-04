@@ -1,4 +1,4 @@
-package de.lehrbaum.lib.synology.photos
+package de.findusl.lib.synology.photos
 
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get

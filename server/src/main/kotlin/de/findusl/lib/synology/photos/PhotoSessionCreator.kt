@@ -1,10 +1,10 @@
-package de.lehrbaum.lib.synology.photos
+package de.findusl.lib.synology.photos
 
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import com.github.michaelbull.result.Ok
 import com.github.michaelbull.result.Result
-import de.lehrbaum.lib.synology.photos.dto.LoginResponse
+import de.findusl.lib.synology.photos.dto.LoginResponse
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.engine.cio.CIO

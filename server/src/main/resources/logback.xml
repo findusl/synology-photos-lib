@@ -15,7 +15,7 @@
     <root level="trace">
         <appender-ref ref="FILE"/>
     </root>
-    <logger name="de.lehrbaum" level="TRACE">
+    <logger name="de.findusl" level="TRACE">
         <appender-ref ref="FILE"/>
         <appender-ref ref="CONSOLE"/>
     </logger>

@@ -6,10 +6,10 @@ plugins {
 	application
 }
 
-group = "de.lehrbaum.lib.synology.photos"
+group = "de.findusl.lib.synology.photos"
 version = "1.0.0"
 application {
-	mainClass.set("de.lehrbaum.lib.synology.photos.ApplicationKt")
+	mainClass.set("de.findusl.lib.synology.photos.ApplicationKt")
 	applicationDefaultJvmArgs = listOf("-Dio.ktor.development=${extra["io.ktor.development"] ?: "false"}")
 }
 

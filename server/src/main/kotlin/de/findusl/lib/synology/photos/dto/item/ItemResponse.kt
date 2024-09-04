@@ -1,6 +1,6 @@
-package de.lehrbaum.lib.synology.photos.dto.item
+package de.findusl.lib.synology.photos.dto.item
 
-import de.lehrbaum.lib.synology.photos.dto.ErrorData
+import de.findusl.lib.synology.photos.dto.ErrorData
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

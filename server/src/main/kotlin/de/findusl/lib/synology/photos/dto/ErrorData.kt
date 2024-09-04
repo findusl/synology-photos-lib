@@ -1,4 +1,4 @@
-package de.lehrbaum.lib.synology.photos.dto
+package de.findusl.lib.synology.photos.dto
 
 import kotlinx.serialization.Serializable
 
