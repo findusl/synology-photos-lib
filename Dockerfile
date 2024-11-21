@@ -18,7 +18,7 @@ FROM openjdk:21-jdk-slim
 WORKDIR /app
 
 # Copy the fat JAR from the builder stage
-COPY --from=builder /app/server/build/libs/server-all.jar app.jar
+COPY --from=builder /app/library/build/libs/server-all.jar app.jar
 
 # Create logs directory
 RUN mkdir -p /app/logs
